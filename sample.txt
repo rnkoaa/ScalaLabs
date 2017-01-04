@@ -1,0 +1,29 @@
+import io.StdIn._
+val numLines = 107818
+
+def parseLine(line:String): NameData = {
+	val parts = line.split(",")
+	(parts(1), parts(2).toInt, parts(3), parts(4).toInt)
+}
+//gender, year, name, number of people
+type NameData = (String, Int, String, Int)
+val nameLines = Array.fill(numLines)(readLine)
+
+val nameData = nameLines.map(parseLine)
+
+println(nameData.length)
+//nameData.foreach(println)
+
+val f1988 = nameData.filter(nd => nd._1 == "F" && nd._2 == 2015)
+val numbers = f1988.map(f => f._4)
+val max = numbers.max
+
+println(max)
+//numbers.foreach(println)
+
+val maxNames = f1988.filter(nd => nd._4 == max);
+
+//maxNames.foreach(println)
+
+val olive = nameData.filter(nd => nd._3.toLowerCase == "olive");
+olive.foreach(println)
